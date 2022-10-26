@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>Törlés</h1>
+<div mat-dialog-content>
+    <p *ngIf="this.data.selectedRow.ctyid">Biztosan el akarja távolítani?</p>
+    <p *ngIf="!this.data.selectedRow.ctyid" [ngStyle]="{'color': 'red'}">Válasszon ki egy országot!</p>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Mégse</button>
+    <button disabled="{{!this.data.selectedRow.ctyid}}" mat-button (click)="onOkClick()">Igen</button>
+</div>

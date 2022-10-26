@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Módosítás</h1>
+<form [formGroup]="regioForm">
+  <div mat-dialog-content>
+      <h2>Régiókód: {{this.data.selectedRow.regid}}</h2>
+      <h3 *ngIf="this.data.selectedRow.regid < 0">Válasszon ki egy régiót!</h3>
+    <mat-form-field appearance="fill">
+      <mat-label>Régiónév</mat-label>
+      <input matInput formControlName="regname" [value]="this.regioForm.get('regname')?.value" maxlength="50" required>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+      <button mat-button (click)="onNoClick()">Mégse</button>
+      <button mat-button [disabled]="this.data.selectedRow.regid < 0" (click)="onOkClick()" class="example-button">Ok</button>
+  </div>
+</form>

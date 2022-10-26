@@ -1,0 +1,29 @@
+<!-- h1 mat-dialog-title>Hi {{data.name}}</h1 -->
+<h1 mat-dialog-title>Módosítás</h1>
+<form [formGroup]="countryForm">
+  <div mat-dialog-content>
+    <!-- mat-form-field appearance="fill" -->
+      <h2>Országkód: {{this.data.selectedRow.ctyid}}</h2>
+      <h3 *ngIf="!this.data.selectedRow.ctyid">Válasszon ki egy országot!</h3>
+      <!-- input matInput formControlName="ctyid" [(ngModel)]="data.selectedRow.ctyid" maxlength="2" required -->
+      <!-- input matInput formControlName="ctyid" [value]="this.countryForm.get('ctyid')?.value" maxlength="2" required -->
+    <!-- /mat-form-field -->
+    <mat-form-field appearance="fill">
+      <mat-label>Ország</mat-label>
+      <!-- input matInput formControlName="ctyname" [(ngModel)]="data.selectedRow.ctyname" maxlength="50" required -->
+      <input matInput formControlName="ctyname" [value]="this.countryForm.get('ctyname')?.value" maxlength="50" required>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Régió</mat-label>
+      <mat-select formControlName="ctyregid" [value]="getRegioName(data.selectedRow.ctyregid)" required>
+        <mat-option ngDefaultControl value="{{regio.regname}}" *ngFor="let regio of regions">{{regio.regname}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+      <button mat-button (click)="onNoClick()">Mégse</button>
+      <!-- button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button -->
+      <!-- button mat-button matTooltip="Válasszon ki egy országot!" matTooltipPosition="above" [matTooltipDisabled]="this.data.selectedRow.ctyid" [disabled]="!this.data.selectedRow.ctyid" (click)="onOkClick()" class="example-button">Ok</button -->
+      <button mat-button [disabled]="!this.data.selectedRow.ctyid" (click)="onOkClick()" class="example-button">Ok</button>
+  </div>
+</form>

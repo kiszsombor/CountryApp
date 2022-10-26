@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>Régió törlés</h1>
+<h2 *ngIf="this.errorMsg">{{this.errorMsg}}</h2>
+<div mat-dialog-content>
+    <p *ngIf="this.data.selectedRow.regid && !this.errorMsg">Biztosan el akarja távolítani?</p>
+    <p *ngIf="!this.data.selectedRow.regid" [ngStyle]="{'color': 'red'}">Válasszon ki egy országot!</p>
+</div>
+<div mat-dialog-actions *ngIf="!this.errorMsg">
+    <button mat-button (click)="onNoClick()">Mégse</button>
+    <button disabled="{{!this.data.selectedRow.regid}}" mat-button (click)="onOkClick()">Igen</button>
+</div>
+<div mat-dialog-actions *ngIf="this.errorMsg">
+    <button mat-button (click)="onNoClick()">Ok</button>
+</div>

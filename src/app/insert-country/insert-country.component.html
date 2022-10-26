@@ -1,0 +1,32 @@
+<!-- h1 mat-dialog-title>Hi {{data.name}}</h1 -->
+<h1 mat-dialog-title>Új</h1>
+<!-- form [formGroup]="countryForm" (ngSubmit)="onSubmit()" -->
+<form [formGroup]="countryForm">
+    <h2 *ngIf="this.errorMsg">{{this.errorMsg}}</h2>
+
+    <div mat-dialog-content>
+        <mat-form-field appearance="fill">
+            <mat-label>Országkód</mat-label>
+            <input formControlName="ctyid" matInput maxlength="2" required>
+        </mat-form-field>
+        
+        <mat-form-field appearance="fill">
+            <mat-label>Ország</mat-label>
+            <!-- input matInput [(ngModel)]="data.animal" -->
+            <input formControlName="ctyname" matInput maxlength="50" required>
+        </mat-form-field>
+    
+        <mat-form-field appearance="fill">
+            <mat-label>Régió</mat-label>
+            <mat-select formControlName="ctyregid" required>
+                <mat-option ngDefaultControl  [value]="regio.regid" *ngFor="let regio of regions">{{regio.regname}}</mat-option>
+            </mat-select>
+            <!-- mat-error *ngIf="countryRegion.hasError('required')">Válasszon egy régiót!</mat-error -->
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button (click)="onNoClick()">Mégse</button>
+        <!-- button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button -->
+        <button mat-button type="submit" (click)="onSubmit()">Ok</button>
+    </div>
+</form>
