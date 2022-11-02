@@ -1,10 +1,12 @@
 <h1 mat-dialog-title>Régió</h1>
 <form [formGroup]="regioForm">
+    <h3 *ngIf="this.errorMsg">{{this.errorMsg}}</h3>
     <div mat-dialog-content>
         <mat-form-field appearance="fill">
             <mat-label>Régió név</mat-label>
             <!-- input matInput [(ngModel)]="data.animal" -->
-            <input formControlName="regname" matInput maxlength="50" required>
+            <input formControlName="regname" matInput minlength="3" maxlength="50" required>
+            <mat-error *ngIf="this.regioForm.value.regname">Legalább 3 hosszú régiónevet adjon meg!</mat-error>
         </mat-form-field>
     </div>
     <div mat-dialog-actions>

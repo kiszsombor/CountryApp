@@ -13,7 +13,7 @@ import { MssqlService } from '../mssql.service';
 })
 export class FilterCountryComponent implements OnInit {
 
-  rowData: Array<Country> = []
+  rowData: Array<Country> = [];
 
   @Output() 
   selectedRow: Country = new Country();

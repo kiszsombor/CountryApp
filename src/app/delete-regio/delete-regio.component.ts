@@ -34,7 +34,7 @@ export class DeleteRegioComponent implements OnInit {
   }
 
   async onOkClick(): Promise<void> {
-    await this.mssqlRegioService.deleteRegion(this.data.selectedRow).catch(() => {this.errorMsg = "Az régió nem törölhető, mivel van még ország a régióban!"; this.err = true;});
+    await this.mssqlRegioService.deleteRegion(this.data.selectedRow).catch(() => {this.errorMsg = "A régió nem törölhető, mivel van még ország a régióban!"; this.err = true;});
 
     if(!this.err){
       this.dialogRef.close();

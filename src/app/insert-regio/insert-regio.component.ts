@@ -12,6 +12,7 @@ import { Regio } from '../regio';
 export class InsertRegioComponent implements OnInit {
 
   regio: Regio = new Regio;
+  errorMsg: string = "";
 
   regioForm = this.fb.group({
     regname: ['', [Validators.required, Validators.maxLength(50)]],
@@ -34,9 +35,15 @@ export class InsertRegioComponent implements OnInit {
 
   async onSubmit() {
     this.regio.regname = this.regioForm.value.regname!;
-    console.log(this.regio);
-    await this.mssqlRegioService.addRegion(this.regio).catch(err => console.log(err));
-    this.dialogRef.close();
+    // console.log(this.regio);
+    if(this.regio.regname.length < 3) {
+
+      this.errorMsg = "A régió neve legalább 3 karakter hosszú legyen!";
+    } else{
+
+      await this.mssqlRegioService.addRegion(this.regio).catch(err => console.log(err));
+      this.dialogRef.close();
+    }
   }
 
 }
